@@ -1,0 +1,60 @@
+{
+  "name": "@slovo/starters",
+  "version": "1.0.2",
+  "description": "generate starters for you",
+  "author": "Volodymyr Terebus @tvolodimir",
+  "keywords": [
+    "oclif", "starter", "cli", "boilerplate", "template"
+  ],
+  "bin": {
+    "starters": "./bin/run"
+  },
+  "homepage": "https://github.com/tvolodimir/starters",
+  "bugs": "https://github.com/tvolodimir/starters/issues",
+  "repository": "tvolodimir/starters",
+  "license": "MIT",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "scripts": {
+    "posttest": "tslint -p . -t stylish",
+    "prepack": "rimraf lib && tsc -b",
+    "test": "echo NO TESTS",
+    "start": "ts-node src/index.ts"
+  },
+  "dependencies": {
+    "@oclif/command": "^1.5.19",
+    "@oclif/errors": "^1.2.2",
+    "chalk": "^2.4.2",
+    "ejs": "^2.7.1",
+    "inquirer": "^7.0.0"
+  },
+  "devDependencies": {
+    "@oclif/config": "^1.13.3",
+    "@oclif/plugin-help": "^2.2.1",
+    "@oclif/tslint": "^3.1.1",
+    "@types/ejs": "^2.6.3",
+    "@types/inquirer": "^6.5.0",
+    "@types/shelljs": "^0.8.5",
+    "@types/yargs": "^13.0.2",
+    "@types/node": "^10.14.18",
+    "yargs": "^14.0.0",
+    "shelljs": "^0.8.3",
+    "shx": "^0.3.2",
+    "rimraf": "^3.0.0",
+    "ts-node": "^8.3.0",
+    "tslint": "^5.20.0",
+    "typescript": "^3.6.3",
+    "tslib": "^1.10.0"
+  },
+  "files": [
+    "/bin",
+    "/lib",
+    "/templates"
+  ],
+  "engines": {
+    "node": ">=8.0.0"
+  },
+  "oclif": {
+    "bin": "starters"
+  }
+}
