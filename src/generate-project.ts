@@ -1,29 +1,29 @@
 import chalk from 'chalk';
-import {render as ejsRender} from 'ejs';
+import { render as ejsRender } from 'ejs';
 import * as fs from 'fs';
 import * as path from 'path';
 
 interface ITemplateData {
-  projectName: string
+  projectName: string;
 }
 
 function render(content: string, data: ITemplateData) {
-  return ejsRender(content, data)
+  return ejsRender(content, data);
 }
 
-export interface CliOptions {
+export interface ICliOptions {
   projectName: string;
   templatePath: string;
-  tartgetPath: string;
+  targetPath: string;
 }
 
-export function generateProject(options: CliOptions) {
-  if (!createProject(options.tartgetPath)) {
+export function generateProject(options: ICliOptions) {
+  if (!createProject(options.targetPath)) {
     return;
   }
 
-  createDirectoryContents(options.templatePath, options.tartgetPath, {
-    projectName: options.projectName
+  createDirectoryContents(options.templatePath, options.targetPath, {
+    projectName: options.projectName,
   });
 
   console.log('');
@@ -36,7 +36,7 @@ const SKIP_FILES = ['node_modules', '.template.json'];
 function createProject(projectPath: string) {
   if (fs.existsSync(projectPath)) {
     console.log(
-      chalk.red(`Folder ${projectPath} exists. Delete or use another name.`)
+      chalk.red(`Folder ${projectPath} exists. Delete or use another name.`),
     );
     return false;
   }
@@ -48,17 +48,19 @@ function createProject(projectPath: string) {
 function createDirectoryContents(
   templatePath: string,
   targetPath: string,
-  data: ITemplateData
+  data: ITemplateData,
 ) {
   const filesToCreate = fs.readdirSync(templatePath);
 
-  filesToCreate.forEach(file => {
+  filesToCreate.forEach((file) => {
     const origFilePath = path.join(templatePath, file);
 
     // get stats about the current file
     const stats = fs.statSync(origFilePath);
 
-    if (SKIP_FILES.indexOf(file) > -1) return;
+    if (SKIP_FILES.indexOf(file) > -1) {
+      return;
+    }
 
     if (stats.isFile()) {
       let contents = fs.readFileSync(origFilePath, 'utf8');
@@ -74,7 +76,7 @@ function createDirectoryContents(
       createDirectoryContents(
         path.join(templatePath, file),
         path.join(targetPath, file),
-        data
+        data,
       );
     }
   });
