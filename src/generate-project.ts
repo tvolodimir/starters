@@ -32,6 +32,7 @@ export function generateProject(options: ICliOptions) {
 }
 
 const SKIP_FILES = ['node_modules', '.template.json'];
+const RENDER_FILES = ['js', 'ts', 'tsx', 'jsx', 'md', 'txt', 'json'];
 
 function createProject(projectPath: string) {
   if (fs.existsSync(projectPath)) {
@@ -64,9 +65,14 @@ function createDirectoryContents(
 
     if (stats.isFile()) {
       let contents = fs.readFileSync(origFilePath, 'utf8');
-
-      contents = render(contents, data);
-
+      if (RENDER_FILES.indexOf(path.extname(origFilePath)) > -1) {
+        try {
+          contents = render(contents, data);
+        } catch (e) {
+          console.error(e, origFilePath);
+          throw e;
+        }
+      }
       const writePath = path.join(targetPath, file);
       fs.writeFileSync(writePath, contents, 'utf8');
     } else if (stats.isDirectory()) {
