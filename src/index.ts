@@ -93,7 +93,7 @@ class GreetMe extends Command {
     const templateName = option ? option.value : null;
     if (templateName && validateFolderName(projectName)) {
       this.log(chalk.bold(`\nDownloading ${templateName} under ${projectName}...\n`));
-      this.log(chalk.bold('\nYour Gatsby Starter was downloaded successfully ✨'));
+      this.log(chalk.bold('\nYour Starter was downloaded successfully ✨'));
       this.log(chalk.bold('Happy coding! 😄'));
 
       const CURR_DIR = process.cwd();
