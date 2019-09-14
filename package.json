@@ -23,7 +23,7 @@
     "posttest": "tslint -p . -t stylish",
     "build": "rimraf lib && tsc -b",
     "test": "echo NO TESTS",
-    "start": "ts-node src/index.ts"
+    "start": "node ./bin/run"
   },
   "dependencies": {
     "@oclif/command": "^1.5.19",
