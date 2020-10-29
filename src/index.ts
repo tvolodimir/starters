@@ -1,5 +1,5 @@
 import { Command, flags } from '@oclif/command';
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 import * as fs from 'fs';
 import { prompt } from 'inquirer';
 import * as path from 'path';

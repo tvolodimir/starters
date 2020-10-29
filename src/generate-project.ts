@@ -1,4 +1,4 @@
-import chalk from 'chalk';
+import * as chalk from 'chalk';
 import { render as ejsRender } from 'ejs';
 import * as fs from 'fs';
 import * as path from 'path';
